@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"strconv"
 
 	"github.com/gorilla/mux"
 )
@@ -13,11 +14,11 @@ func hello(w http.ResponseWriter, req *http.Request) {
 	var x [2]interface{}
 	var z [2]interface{}
 	x[0] = "a"
-	x[1] = "c"
-	z[0] = "a"
-	z[1] = "b"
+	x[1] = "b"
+	z[0] = "aa"
+	z[1] = "bf"
 	result := Equal(x, z)
-	fmt.Println(result)
+	fmt.Fprint(w, strconv.FormatBool(result))
 }
 
 func Equal(fromDb, fetched [2]interface{}) bool {
